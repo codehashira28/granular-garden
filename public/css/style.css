@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.track-container {
+    margin-top: 50px;
+}
+
+#track-container {
+    border-top: solid 2px #ccc;
+    border-bottom: solid 2px #ccc;
+}
+
+.audio-btn {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.feed {
+    position: relative;
+    top: -80px;
+    left: 20px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#border-bottom {
+    border-bottom: solid 1px #ccc;
+    height: 80px;
+}
+
+#artist-name {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+#song-title {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+#waveform {
+    position: relative;
+    top: -60px;
+    width: 100%;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}
+
+input {
+    outline: none;
+}
+
+#search-container {
+    position: relative;
+    width: 400px;
+    top: 45px;
+    right: 90px;
+}
+
+#search-bar {
+    position: relative;
+    width: 100%;
+    height: 35px;
+}
+
+#search-svg {
+    position: relative;
+    left: 385px;
+    bottom: 59px;
+}
+
+.form {
+    width: 1100px;
+}
+
+.share {
+    position: relative;
+    left: -15px;
+    top: 70px;
+    grid-template-columns: 3;
+    grid-template-rows: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.cover-art {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
