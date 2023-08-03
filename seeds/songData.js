@@ -20,7 +20,7 @@ const songData = [
     creator: "Zach Bryan",
     dateCreated:"August 2, 2023",
     audioFile: "/dumbydata/audio/blackout.mp3", 
-    coverImage: "/dumbydata/images/someethingintheorange.jpg", 
+    coverImage: "/dumbydata/images/somethingintheorange.png", 
   },
 ];
 
