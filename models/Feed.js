@@ -15,8 +15,12 @@ Feed.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        content: {
-            type: DataTypes.TEXT,
+        audioFile: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        coverImage: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         creator: {
