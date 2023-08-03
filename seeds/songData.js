@@ -3,24 +3,24 @@ const { Feed } = require("../models");
 const songData = [
   {
     title: "Blackout",
+    audioFile: "/audio/blackout.mp3", 
+    coverImage: "/images/blackoutcover.jpg", 
     creator: "Turnstile",
     dateCreated:"August 2, 2023",
-    audioFile: "/dumbydata/audio/blackout.mp3", 
-    coverImage: "/dumbydata/images/blackoutcover.jpg", 
   },
   {
     title: "Hurricane",
+    audioFile: "/audio/hurricane.mp3", 
+    coverImage: "/images/hurricanecover.jpeg", 
     creator: "Koastle",
     dateCreated:"August 2, 2023",
-    audioFile: "/dumbydata/audio/hurricane.mp3", 
-    coverImage: "/dumbydata/images/hurricanecover.jpg", 
   },
   {
     title: "Something in the Orange",
+    audioFile: "/audio/blackout.mp3", 
+    coverImage: "/images/somethingintheorangecover.png", 
     creator: "Zach Bryan",
     dateCreated:"August 2, 2023",
-    audioFile: "/dumbydata/audio/blackout.mp3", 
-    coverImage: "/dumbydata/images/somethingintheorange.png", 
   },
 ];
 
