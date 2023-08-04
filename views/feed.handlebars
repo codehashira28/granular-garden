@@ -10,14 +10,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="container" id="track-container">
-                            <button class="btn custom-btn d-lg-block d-none audio-btn">Play</button>
                             <p id="artist-name">
                                 <a href="/{{creator}}">{{creator}}</a>
                             </p>
                             <p class="text-black" id="song-title">{{title}}</p>
                             <img src="{{coverImage}}" alt="{{title}}" class="cover-art">
+                            <button class="btn custom-btn d-lg-block d-none audio-btn" id="audio-btn{{@index}}">Play</button>
                             <audio src={{audioFile}}></audio>
-                            <div id="waveform"></div>
+                            <div class="waveform" id="waveform{{@index}}"></div>
                         </div>
                     </div>
                 </div>
