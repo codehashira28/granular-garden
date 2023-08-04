@@ -1,23 +1,27 @@
 <main>
 
-    <section class="section-padding section-bg" id="feed-sect">
+    <section class="section-bg" id="feed-sect">
         <div class="container">
             <h2 class="feed" id="border-bottom">Feed</h2>
         </div>
         {{#each songs}}
         <div class="container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="container" id="track-container">
-                            <p id="artist-name">
-                                <a href="/{{creator}}">{{creator}}</a>
-                            </p>
-                            <p class="text-black" id="song-title">{{title}}</p>
-                            <img src="{{coverImage}}" alt="{{title}}" class="cover-art">
-                            <button class="btn custom-btn d-lg-block d-none audio-btn" id="audio-btn{{@index}}">Play</button>
-                            <audio src={{audioFile}}></audio>
+            <div class="container" id="track-container">
+                <div class="row align-items-end">
+                    <div class="col">
+                        <p id="artist-name">
+                            <a href="/{{creator}}">{{creator}}</a>
+                        </p>
+                        <p class="text-black" id="song-title">{{title}}</p>
+                        <img src="{{coverImage}}" alt="{{title}}" class="cover-art">
+                    </div>
+
+                    <div class="col">
+                        <div class="track-actions">
+                            <button class="btn custom-btn d-lg-block d-none audio-btn"
+                                id="audio-btn{{@index}}">Play</button>
                             <div class="waveform" id="waveform{{@index}}"></div>
+                            <audio src={{audioFile}}></audio>
                         </div>
                     </div>
                 </div>

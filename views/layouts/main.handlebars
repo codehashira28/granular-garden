@@ -59,7 +59,7 @@
                     </li>
                 </ul>
 
-                {{#if user}}
+                {{#if loggedIn}}
                 <a href="/" class="btn custom-btn d-lg-block d-none">Logout</a>
                 {{else}}
                 <a href="/login" class="btn custom-btn d-lg-block d-none">Login</a>
@@ -114,7 +114,7 @@
                         </li>
 
                         <li class="site-footer-link-item">
-                            {{#if user}}
+                            {{#if loggedIn}}
                             <a href="/" class="site-footer-link">Logout</a>
                             {{else}}
                             <a href="/login" class="site-footer-link">Login</a>
