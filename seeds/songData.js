@@ -17,7 +17,7 @@ const songData = [
   },
   {
     title: "Something in the Orange",
-    audioFile: "/audio/blackout.mp3", 
+    audioFile: "/audio/somethingintheorange.mp3", 
     coverImage: "/images/somethingintheorangecover.png", 
     creator: "Zach Bryan",
     dateCreated:"August 2, 2023",
