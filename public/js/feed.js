@@ -30,15 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             wavesurfer.load(data[i].audioFile);
 
-            document.getElementById(`audio-btn${i}`).addEventListener('click', () => {
+            const audioBtn = document.getElementById(`audio-btn${i}`)
+
+            audioBtn.innerHTML = wavesurfer.isPlaying() ? 'Pause' : 'Play';
+
+            audioBtn.addEventListener('click', () => {
                 wavesurfer.playPause();
-        
-                if (audioBtn.innerHTML === 'Play' && wavesurfer.isPlaying() === true) {
-                    audioBtn.innerHTML = 'Pause';
-                } else if (audioBtn.innerHTML === 'Pause' && wavesurfer.isPlaying() === false) {
-                    audioBtn.innerHTML = 'Play';
+
+                audioBtn.innerHTML = wavesurfer.isPlaying() ? 'Pause' : 'Play';
+            });
+
+            audioBtn.addEventListener('keydown', (event) => {
+                if (event.key === ' ') {
+                    event.preventDefault();
+                    wavesurfer.playPause();
+                    audioBtn.innerHTML = wavesurfer.isPlaying() ? 'Pause' : 'Play';
+
                 }
             });
+
+            audioBtn.setAttribute('tabindex', '0');
         }
     });
 });
