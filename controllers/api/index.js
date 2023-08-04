@@ -1,13 +1,11 @@
 const router = require('express').Router();
 
 const userRoutes = require('./user-routes');
-// add more const here 
-
 const feedRoutes = require('./feed-routes');
+const uploadRoutes = require('./upload-route')
 
 router.use('/users', userRoutes);
-// add more router.use here
-
 router.use('/feed', feedRoutes);
+router.use('/upload', uploadRoutes)
 
 module.exports = router;

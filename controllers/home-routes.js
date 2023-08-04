@@ -33,12 +33,12 @@ router.get('/feed', async (req, res) => {
   // route to get profile that shows just the users songs
   router.get('/profile', withAuth, async (req, res) => {
     try {
-        const dbSongData = await dbSongData.findAll({
+        const dbSongData = await Feed.findAll({
             where: {
                 creator: req.session.userId,
             },
             order: [
-                ['id', 'DESC'],
+                ['id'],
             ],
         });
         
@@ -52,5 +52,6 @@ router.get('/feed', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 
 module.exports = router;
