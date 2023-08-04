@@ -6,6 +6,6 @@ const uploadRoutes = require('./upload-route')
 
 router.use('/users', userRoutes);
 router.use('/feed', feedRoutes);
-router.use('/upload', uploadRoutes)
+// router.use('/upload', uploadRoutes)
 
 module.exports = router;

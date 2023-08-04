@@ -2,35 +2,61 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-.track-container {
+#track-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 50px;
+    /* margin-bottom: 100px; */
+    border-bottom: solid 2px #ccc;
 }
 
-#track-container {
-    /* border-top: solid 2px #ccc !important; */
-    border-bottom: solid 2px #ccc;
+.track-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.info-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.track-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
 }
 
 .audio-btn {
     position: relative;
     margin-top: 20px;
     margin-bottom: 20px;
+    max-width: 100px;
 }
 
 .feed {
     position: relative;
-    top: -80px;
-    left: 20px;
     width: 100%;
-    height: 50px;
+    height: 100%;
     padding: 10px;
-    box-sizing: border-box;
 }
 
 #border-bottom {
@@ -40,6 +66,8 @@ html, body {
 
 #artist-name {
     /* padding-top: 200px; */
+    flex: 1;
+    margin-right: 10px;
     width: 100%;
     padding-left: 10px;
     font-weight: 500;
@@ -55,10 +83,14 @@ html, body {
 
 .waveform {
     position: relative;
+    flex: 1;
+    min-width: 900px;
     width: 100%;
     /* height: 200px; */
     border-left: solid 1px #ccc;
     border-right: solid 1px #ccc;
+    margin-top: auto;
+    margin-bottom: 100px;
 }
 
 input {
@@ -105,5 +137,11 @@ input {
     width: 300px;
     height: 300px;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
+}
+
+#artist-name,
+#song-title,
+.cover-art {
+  margin: 0;
 }

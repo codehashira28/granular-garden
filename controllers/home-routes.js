@@ -15,6 +15,10 @@ router.get('/signup', async (req, res) => {
     res.render('signup', { pageTitle: 'Signup' });
 });
 
+router.get('/upload', async (req, res) => {
+    res.render('upload', { pageTitle: 'upload' });
+});
+
 router.get('/feed', async (req, res) => {
     try {
       const dbSongData = await Feed.findAll();
