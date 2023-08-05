@@ -1,21 +1,37 @@
+const router = require('express').Router();
+const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
-  cloud_name: 'your_cloud_name', // can fill in later with actual credentials
-  api_key: 'your_api_key',
-  api_secret: 'your_api_secret',
+  cloud_name: 'dkojehsq2', // can fill in later with actual credentials
+  api_key: '625644292477375',
+  api_secret: 'TF6SX2V1-a3lNr54bN4UYJSwrgI',
 });
 
-const path = require('path');
+// Multer configuration
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-const filePath = 'path_to_your_image.jpg'; // Replace with the path to user image file or any other media types
+// Route to handle file upload
+router.post('/', upload.single('audioFile'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
 
-cloudinary.uploader.upload(filePath, { tags: 'sample_upload' })
-  .then((result) => {
-    console.log('Upload success:');
-    console.log(result);
-  })
-  .catch((error) => {
-    console.error('Upload error:');
-    console.error(error);
-  });
+  // Upload the audio file to Cloudinary
+  cloudinary.uploader.upload_stream(
+    { resource_type: 'auto' },
+    (error, result) => {
+      if (error) {
+        console.error('Cloudinary upload error:', error);
+        return res.status(500).json({ error: 'Error uploading file to Cloudinary' });
+      }
+
+      // Success, return the Cloudinary URL of the uploaded file
+      res.json({ url: result.url });
+    }
+  ).end(req.file.buffer);
+});
+
+
+module.exports = router;

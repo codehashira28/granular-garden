@@ -15,7 +15,7 @@ router.get('/signup', async (req, res) => {
     res.render('signup', { pageTitle: 'Signup' });
 });
 
-router.get('/upload', async (req, res) => {
+router.get('/api/upload', async (req, res) => {
     res.render('upload', { pageTitle: 'upload' });
 });
 
