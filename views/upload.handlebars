@@ -1,7 +1,24 @@
-<h1>Audio Upload</h1>
-<form action="/api/upload" method="post" enctype="multipart/form-data">
-    <label for="audioFile">Select Audio File:</label>
-    <input type="file" id="audioFile" name="audioFile" accept="audio/*">
-    <br>
-    <input type="submit" value="Upload">
-</form>
+<main>
+
+    <section class="ticket-section section-padding">
+        <div class="section-overlay"></div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-10 mx-auto">
+                    <form class="custom-form ticket-form mb-5 mb-lg-0 login-form" action="/api/upload" method="post" enctype="multipart/form-data" role="form">
+                        <h2 class="text-center mb-4" id="border-bottom">Upload</h2>
+                        <div class="col-lg-6 col-10 mx-auto">
+                            <div>
+                                    <button class="btn custom-btn d-lg-block d-none file-btn">
+                                        <input type="file" id="audioFile" name="audioFile" accept="audio/*">
+                                        Choose File</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+</main>
