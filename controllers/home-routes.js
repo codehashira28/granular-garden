@@ -1,54 +1,71 @@
 const router = require('express').Router();
-const { User, Feed } = require('../models');
+const { Feed } = require('../models');
 const withAuth = require('../utils/auth');
 
-
-router.get('/', async (req, res) => {
+// Home Page
+router.get('/', (req, res) => {
     res.render('homepage', { pageTitle: 'Home' });
 });
 
-router.get('/login', async (req, res) => {
-    res.render('login', { pageTitle: 'Login' });
-});
+// Login Page
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
 
-router.get('/signup', async (req, res) => {
+// Signup Page
+router.get('/signup', (req, res) => {
     res.render('signup', { pageTitle: 'Signup' });
 });
 
-router.get('/upload', async (req, res) => {
-    res.render('upload', { pageTitle: 'upload' });
+// Upload Page
+router.get('/upload', (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+    } else {
+        try {
+            res.render('upload', { pageTitle: 'Upload' });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
 });
 
+// Feed Page
 router.get('/feed', async (req, res) => {
-    try {
-      const dbSongData = await Feed.findAll();
-  
-      const songs = dbSongData.map((feed) =>
-        feed.get({ plain: true })
-      );
-  
-      res.render('feed', { songs, pageTitle: 'Feed' });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+    } else {
+        try {
+            const dbSongData = await Feed.findAll();
+            const songs = dbSongData.map(feed => feed.get({ plain: true }));
 
-  // route to get profile that shows just the users songs
-  router.get('/profile', withAuth, async (req, res) => {
+            res.render('feed', { songs, pageTitle: 'Feed' });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+});
+
+// Profile Page (requires authentication)
+router.get('/profile', withAuth, async (req, res) => {
     try {
         const dbSongData = await Feed.findAll({
             where: {
                 creator: req.session.userId,
             },
-            order: [
-                ['id'],
-            ],
+            order: [['id']],
         });
-        
-        const songdata = serialize(dbSongData);
+
+        const songdata = serialize(dbSongData); // Make sure you have a serialize function defined
         res.render('profile', {
-            songdata: songdata,
+            songdata,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
@@ -56,6 +73,5 @@ router.get('/feed', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 
 module.exports = router;

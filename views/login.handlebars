@@ -1,38 +1,36 @@
-<main>
+<section class="ticket-section section-padding">
+            <div class="section-overlay"></div>
 
-    <section class="ticket-section section-padding">
-        <div class="section-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-10 mx-auto">
+                        <form class="ticket-form mb-5 mb-lg-0 login-form" role="form">
+                            <h2 class="text-center mb-4">Login</h2>
 
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-10 mx-auto">
-                    <form class="custom-form ticket-form mb-5 mb-lg-0 login-form" action="/login" method="post" role="form">
-                        <h2 class="text-center mb-4">Login</h2>
-
-                        <div class="ticket-form-body form">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <input type="text" name="ticket-form-name" id="ticket-form-name"
-                                        class="form-control" placeholder="username" required>
+                            <div class="ticket-form-body form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="text" id="email-login" class="form-control"
+                                            placeholder="Email" required>
+                                    </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <div class="ticket-form-body form">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <input type="text" name="ticket-form-name" id="ticket-form-name"
-                                        class="form-control" placeholder="password" required>
+                            <div class="ticket-form-body form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <input type="password" id="password-login" class="form-control"
+                                            placeholder="Password" required>
+                                    </div>
                                 </div>
-
+                                <p>Don't have an account? <a href="/signup">Signup</a></p>
+                                <button class="btn custom-btn d-lg-block d-none audio-btn" id="login-submit-btn"
+                                    type="submit">Submit</button>
                             </div>
-                            <p>Don't have an account? <a href="/signup">Signup</a></p>
-                            <button class="btn custom-btn d-lg-block d-none audio-btn">Submit</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-    </section>
+        </section>
+    </main>
 
-</main>
+    <script src="./js/login.js"></script>
