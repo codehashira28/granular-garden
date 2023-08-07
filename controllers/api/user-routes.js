@@ -1,20 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// This route gets all users.
-router.get('/', async (req, res) => {
-  try {
-    const dbUserData = await User.findAll({
-      attributes: { exclude: ['password'] },
-    });
-
-    res.status(200).json(dbUserData);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
 // This route handles the creation of a new user.
 router.post('/', async (req, res) => {
   try {
@@ -26,7 +12,8 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.username = dbUserData.username;
+      req.session.userId = dbUserData.id;
       res.status(200).json(dbUserData);
     });
   } catch (err) {
@@ -38,6 +25,7 @@ router.post('/', async (req, res) => {
 // This route handles user login.
 router.post('/login', async (req, res) => {
   try {
+    console.log('Reached /login route');
     const dbUserData = await User.findOne({
       where: {
         email: req.body.email,
@@ -45,6 +33,7 @@ router.post('/login', async (req, res) => {
     });
 
     if (!dbUserData) {
+      console.log('User not found');
       res
         .status(400)
         .json({ message: 'Incorrect email or password. Please try again!' });
@@ -61,15 +50,11 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      console.log('Session saved');
       req.session.loggedIn = true;
-      console.log(
-        '🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
-        req.session.cookie
-      );
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      req.session.username = dbUserData.username;
+      req.session.userId = dbUserData.id;
+      res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
     });
   } catch (err) {
     console.log(err);
