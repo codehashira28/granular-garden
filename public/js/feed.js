@@ -10,15 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             let data = await response.json();
-            console.log(data);
             return data;
         } catch (err) {
-            console.log(err);
             throw err;
         }
     };
     fetchSongData().then((data) => {
-        console.log('DATA', data);
         for (let i = 0; i < data.length; i++) {
 
             const wavesurfer = WaveSurfer.create({
@@ -26,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 waveColor: '#c77dff',
                 progressColor: '#7400b8',
                 cursorColor: '#480ca8',
+                fillParent: true,
             });
 
             wavesurfer.load(data[i].audioFile);

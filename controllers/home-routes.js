@@ -10,16 +10,21 @@ router.get('/', (req, res) => {
 // Login Page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-      res.redirect('/');
+      res.redirect('/feed');
       return;
     }
   
-    res.render('login');
+    res.render('login', { pageTitle: 'Login', loggedIn: req.session.loggedIn });
   });
 
 // Signup Page
 router.get('/signup', (req, res) => {
-    res.render('signup', { pageTitle: 'Signup' });
+    if (req.session.loggedIn) {
+        res.redirect('/feed');
+        return;
+    }
+
+    res.render('signup', { pageTitle: 'Signup', loggedIn: req.session.loggedIn });
 });
 
 // Upload Page
@@ -45,7 +50,7 @@ router.get('/feed', async (req, res) => {
             const dbSongData = await Feed.findAll();
             const songs = dbSongData.map(feed => feed.get({ plain: true }));
 
-            res.render('feed', { songs, pageTitle: 'Feed' });
+            res.render('feed', { songs, pageTitle: 'Feed', loggedIn: req.session.loggedIn });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
