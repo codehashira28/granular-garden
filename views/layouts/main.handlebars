@@ -30,9 +30,15 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-black">
         <div class="container">
+            {{#if loggedIn}}
+            <a class="navbar-brand" href="/feed">
+                Granular Garden
+            </a>
+            {{else}}
             <a class="navbar-brand" href="/">
                 Granular Garden
             </a>
+            {{/if}}
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +47,23 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+
+                    {{#if loggedIn}}
+                    <div class="container" id="search-container">
+                        <input type="text" placeholder="search" id="search-bar">
+                        <button class="btn custom-btn d-lg-block d-none audio-btn" id="search-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    {{/if}}
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="/">Account</a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link click-scroll" href="/feed">Feed</a>
@@ -56,7 +79,7 @@
                 </ul>
 
                 {{#if loggedIn}}
-                <a href="/" class="btn custom-btn d-lg-block d-none">Logout</a>
+                <button class="btn custom-btn d-lg-block d-none logout-btn">Logout</button>
                 {{else}}
                 <a href="/login" class="btn custom-btn d-lg-block d-none">Login</a>
                 {{/if}}
@@ -89,20 +112,29 @@
                     <h5 class="site-footer-title mb-3">Links</h5>
 
                     <ul class="site-footer-links">
+                        {{#if loggedIn}}
+                        <li class="site-footer-link-item">
+                            <a href="/account" class="site-footer-link">Account</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="/feed" class="site-footer-link">Feed</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="/upload" class="site-footer-link">Upload</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a class="site-footer-link logout-btn">Logout</a>
+                        </li>
+                        {{else}}
                         <li class="site-footer-link-item">
                             <a href="/" class="site-footer-link">Home</a>
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">About</a>
-                        </li>
-
-                        <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">Artists</a>
-                        </li>
-
-                        <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">Songs</a>
+                            <a href="/feed" class="site-footer-link">Feed</a>
                         </li>
 
                         <li class="site-footer-link-item">
@@ -110,12 +142,9 @@
                         </li>
 
                         <li class="site-footer-link-item">
-                            {{#if loggedIn}}
-                            <a href="/" class="site-footer-link">Logout</a>
-                            {{else}}
                             <a href="/login" class="site-footer-link">Login</a>
-                            {{/if}}
                         </li>
+                        {{/if}}
                     </ul>
                 </div>
 
@@ -141,7 +170,8 @@
                     <p class="text-white d-flex mt-3 mb-2">
                         2201 West End Ave, Nashville, TN 37235</p>
 
-                    <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                    <a class="link-fx-1 color-contrast-higher mt-3"
+                        href="https://www.google.com/maps/place/2201+West+End+Ave,+Nashville,+TN+37240/@36.1472508,-86.8039946,17z/data=!3m1!4b1!4m6!3m5!1s0x88646697d2d20a05:0x201ac558b1f5bf37!8m2!3d36.1472465!4d-86.8014197!16s%2Fg%2F12hkggh15?entry=ttu">
                         <span>Our Maps</span>
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -181,6 +211,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.3.0/wavesurfer.min.js"></script>
     <script type="module" src="/js/feed.js"></script>
+    <script type="module" src="/js/login.js"></script>
 
 </body>
 

@@ -1,8 +1,19 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// This route gets all users.
+router.get('/', async (req, res) => {
+  try {
+    const dbUserData = await User.findAll();
+    res.status(200).json(dbUserData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // This route handles the creation of a new user.
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
@@ -66,6 +77,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      res.json({ message: 'You are now logged out!' });
       res.status(204).end();
     });
   } else {
