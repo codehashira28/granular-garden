@@ -9,7 +9,7 @@
             <div class="container" id="track-container">
                 <div class="row align-items-end">
                     <div class="col image-container">
-                        <a href="/{{creator}}/{{title}}">
+                        <a href="/feed/{{creator}}/{{title}}">
                             <img src="{{coverImage}}" alt="{{title}}" class="cover-art">
                         </a>
                     </div>
@@ -19,17 +19,17 @@
                             <p id="artist-name">
                                 <a href="/{{creator}}">{{creator}}</a>
                             </p>
-                            <a href="/{{creator}}/{{title}}">
+                            <a href="/feed/{{creator}}/{{title}}">
                                 <p class="text-black" id="song-title">{{title}}</p>
                             </a>
                             <button class="btn custom-btn d-lg-block d-none audio-btn"
                                 id="audio-btn{{@index}}"></button>
                             <div class="waveform" id="waveform{{@index}}"></div>
                             <audio src={{audioFile}}></audio>
+                            <a href='/feed/{{creator}}/{{title}}'>
+                                <button class="btn custom-btn d-lg-block d-none view-btn">View Track</button>
+                            </a>
                         </div>
-                        <a href='/track/{{id}}'> 
-                            <button >View track</button>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -38,5 +38,3 @@
     </section>
 
 </main>
-
-<script type="module" src="/js/feed.js"></script>

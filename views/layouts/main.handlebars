@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
 
-                    {{#if loggedIn}}
+                    {{!-- {{#if loggedIn}}
                     <div class="container" id="search-container">
                         <input type="text" placeholder="search" id="search-bar">
                         <button class="btn custom-btn d-lg-block d-none audio-btn" id="search-svg">
@@ -59,7 +59,7 @@
                             </svg>
                         </button>
                     </div>
-                    {{/if}}
+                    {{/if}} --}}
 
                     <li class="nav-item">
                         <a class="nav-link click-scroll" href="/profile">Profile</a>
@@ -209,6 +209,9 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.3.0/wavesurfer.min.js"></script>
+    {{#if trackDetails}}
+    <script type="module" src="/js/trackDetails.js"></script>
+    {{/if}}
     {{#if feed}}
     <script type="module" src="/js/feed.js"></script>
     {{/if}}

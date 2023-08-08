@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Feed } = require('../models');
+const { Feed, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 const serialize = (data) => JSON.parse(JSON.stringify(data));
@@ -27,7 +27,7 @@ router.get('/signup', (req, res) => {
         return;
     }
 
-    res.render('signup', { pageTitle: 'Signup', loggedIn: req.session.loggedIn });
+    res.render('signup', { pageTitle: 'Signup', loggedIn: req.session.loggedIn, signup: true });
 });
 
 // Upload Page
@@ -53,7 +53,37 @@ router.get('/feed', async (req, res) => {
             const dbSongData = await Feed.findAll();
             const songs = dbSongData.map(feed => feed.get({ plain: true }));
 
-            res.render('feed', { songs, pageTitle: 'Feed', loggedIn: req.session.loggedIn });
+            res.render('feed', { songs, pageTitle: 'Feed', loggedIn: req.session.loggedIn, feed: true });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
+});
+
+router.get('/feed/:creator/:title', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+    } else {
+        try {
+            const dbSongData = await Feed.findOne({
+                where: {
+                    creator: req.params.creator,
+                    title: req.params.title
+                },
+                order: [[{ model: Comment }, 'id', 'DESC']],
+                include: [Comment]
+            });
+
+            if (!dbSongData) {
+                // Handle case when song is not found
+                res.status(404).render('404', { pageTitle: 'Not Found' });
+                return;
+            }
+
+            const song = dbSongData.get({ plain: true });
+
+            res.render('track-details', { song, pageTitle: 'Track Details', loggedIn: req.session.loggedIn, trackDetails: true });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
