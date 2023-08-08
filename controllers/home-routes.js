@@ -72,7 +72,7 @@ router.get('/profile', withAuth, async (req, res) => {
             order: [['id']],
         });
 
-        const songdata = serialize(dbSongData); // Make sure you have a serialize function defined
+        const songdata = serialize(dbSongData); 
         res.render('profile', {
             songdata,
             loggedIn: req.session.loggedIn,
