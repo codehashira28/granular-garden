@@ -36,7 +36,7 @@ router.get('/upload', (req, res) => {
         res.redirect('/login');
     } else {
         try {
-            res.render('upload', { pageTitle: 'Upload' });
+            res.render('upload', { pageTitle: 'Upload', loggedIn: req.session.loggedIn });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
