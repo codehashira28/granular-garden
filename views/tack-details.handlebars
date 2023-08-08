@@ -1,0 +1,35 @@
+<main>
+    <section class="section-bg" id="track-details-sect">
+        <div class="container">
+            <div class="container" id="track-details-container">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{feedData.coverImage}}" alt="{{feedData.title}}" class="track-cover-art">
+                    </div>
+                    <div class="col">
+                        <div class="track-details">
+                            <p id="artist-name">{{feedData.creator}}</p>
+                            <p class="text-black" id="song-title">{{feedData.title}}</p>
+                            <audio src="{{feedData.audioFile}}" controls></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>Comments</h3>
+                        <ul class="comment-list">
+                            {{#each feedData.comments}}
+                            <li class="comment">{{this.text}}</li>
+                            {{/each}}
+                        </ul>
+                        <h3>Add Comment</h3>
+                        <form action="/comment/add/{{feedData.id}}" method="post" class="comment-form">
+                            <textarea name="commentText" rows="3" placeholder="Write your comment"></textarea>
+                            <button type="submit">Submit Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
