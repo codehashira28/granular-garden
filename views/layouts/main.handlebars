@@ -89,7 +89,6 @@
 
     <main>
         {{{body}}}
-        <div id="wavesurfer"></div>
     </main>
 
 
@@ -210,6 +209,17 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/4.3.0/wavesurfer.min.js"></script>
+    {{#if feed}}
+    <script type="module" src="/js/feed.js"></script>
+    {{/if}}
+    {{#if loggedIn}}
+    <script type="module" src="/js/logout.js"></script>
+    {{else}}
+    <script type="module" src="/js/login.js"></script>
+    {{/if}}
+    {{#if signup}}
+    <script type="module" src="/js/signup.js"></script>
+    {{/if}}
 </body>
 
 </html>
