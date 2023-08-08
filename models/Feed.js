@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Comment = require('./Comment');
 
-class Feed extends Model {};
+class Feed extends Model { };
 
 Feed.init(
     {
@@ -32,7 +33,7 @@ Feed.init(
             defaultValue: DataTypes.NOW,
             allowNull: false
         }
-        
+
     },
     {
         sequelize,
@@ -43,3 +44,8 @@ Feed.init(
 )
 
 module.exports = Feed;
+
+// Feed.hasMany(Comment, {
+//     foreignKey: 'feed_id',
+//     as: 'comments',
+// });

@@ -35,11 +35,11 @@ router.post('/', upload.single('audioFile'), (req, res) => {
       // THEN REDIRECT
         try {
           const dbFeedData = Feed.create({
-            title: req.file.originalname,
+            title: req.file.originalname.split('.')[0],
             audioFile: result.secure_url, 
-            coverImage: "/images/hurricanecover.jpeg", 
+            coverImage: "/images/blackcover.png", 
             creator: req.session.username,
-            dateCreated:"August 2, 2023",
+            dateCreated:"August 8, 2023",
           });
           console.log("THE USER IS: " + req.session.username);
         } catch (err) {

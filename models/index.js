@@ -10,7 +10,8 @@ Feed.hasMany(Comment, {
 
 // Comments belongs to Feed
 Comment.belongsTo(Feed, {
-    foreignKey: 'feed_id'
+    foreignKey: 'feed_id',
+    as: 'comments',
 })
 
 module.exports = { User, Feed, Comment};
