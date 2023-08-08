@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { Feed } = require('../models');
 const withAuth = require('../utils/auth');
 
+const serialize = (data) => JSON.parse(JSON.stringify(data));
+
+
 // Home Page
 router.get('/', (req, res) => {
     res.render('homepage', { pageTitle: 'Home' });
@@ -57,6 +60,7 @@ router.get('/feed', async (req, res) => {
         }
     }
 });
+
 
 // Profile Page (requires authentication)
 router.get('/profile', withAuth, async (req, res) => {
