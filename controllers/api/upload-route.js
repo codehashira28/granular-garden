@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const { Feed } = require('../../models');
 
 cloudinary.config({
   cloud_name: 'dkojehsq2', // can fill in later with actual credentials
@@ -13,8 +14,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // Route to handle file upload
-router.post('/', upload.single('audioFile'), ({ file }, res) => {
-  if (!file) {
+router.post('/', upload.single('audioFile'), (req, res) => {
+  if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
   }
   console.log("UPLOADING");
@@ -27,14 +28,26 @@ router.post('/', upload.single('audioFile'), ({ file }, res) => {
         console.error('Cloudinary upload error:', error);
         return res.status(500).json({ error: 'Error uploading file to Cloudinary' });
       }
-      console.log("UPLOADED");
+      console.log("UPLOADED BY " + req.session.username);
 
       // Success, return the Cloudinary URL of the uploaded file
       // CREATE TRACK or SONG
       // THEN REDIRECT
-      res.json({ result });
+        try {
+          const dbFeedData = Feed.create({
+            title: req.file.originalname,
+            audioFile: result.secure_url, 
+            coverImage: "/images/hurricanecover.jpeg", 
+            creator: req.session.username,
+            dateCreated:"August 2, 2023",
+          });
+          console.log("THE USER IS: " + req.session.username);
+        } catch (err) {
+          console.log(err);
+        }
+      res.redirect('/feed');
     }
-  ).end(file.buffer);
+  ).end(req.file.buffer);
 });
 
 
