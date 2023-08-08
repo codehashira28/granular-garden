@@ -13,10 +13,11 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // Route to handle file upload
-router.post('/', upload.single('audioFile'), (req, res) => {
-  if (!req.file) {
+router.post('/', upload.single('audioFile'), ({ file }, res) => {
+  if (!file) {
     return res.status(400).json({ error: 'No file uploaded' });
   }
+  console.log("UPLOADING");
 
   // Upload the audio file to Cloudinary
   cloudinary.uploader.upload_stream(
@@ -26,11 +27,14 @@ router.post('/', upload.single('audioFile'), (req, res) => {
         console.error('Cloudinary upload error:', error);
         return res.status(500).json({ error: 'Error uploading file to Cloudinary' });
       }
+      console.log("UPLOADED");
 
       // Success, return the Cloudinary URL of the uploaded file
-      res.json({ url: result.url });
+      // CREATE TRACK or SONG
+      // THEN REDIRECT
+      res.json({ result });
     }
-  ).end(req.file.buffer);
+  ).end(file.buffer);
 });
 
 
